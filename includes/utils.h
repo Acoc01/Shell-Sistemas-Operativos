@@ -15,10 +15,12 @@ struct command_t {
 };
 
 namespace utils {
-void parse(std::string in, command_t &c);                     // Without pipes
+void parse(std::string in, command_t &c); // Without pipes
+int count_pipes(std::string in); // Check the number of pipes in the input
 void parse_pipes(std::string in, std::vector<command_t> &cs); // With pipes
 void execute_cm(command_t c);                                 // Without pipes
 void execute_cm(command_t, uint32_t np); // When using pipes
+std::vector<char *> tocstr(command_t c); // From string to char*
 };                                       // namespace utils
 
 #endif

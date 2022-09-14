@@ -9,9 +9,13 @@
 /home/roako/Desktop/Shell-Sistemas-Operativos/includes/utils.cpp
 utils.h
 /home/roako/Desktop/Shell-Sistemas-Operativos/includes/utils.h
+cstring
+-
 iostream
 -
 string
+-
+sys/wait.h
 -
 unistd.h
 -

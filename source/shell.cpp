@@ -17,7 +17,14 @@ int main() {
         exit(0);
       // Parse commands
       command_t com;
-      utis::parse(commands, com);
+      utils::parse(commands, com);
+      // for (int i = 0; i < com.args.size(); ++i) {
+      //   std::cout << com.args[i] << " ";
+      // }
+      // std::cout << "\n";
+      if (!utils::count_pipes(commands)) {
+        utils::execute_cm(com);
+      }
     } else {
       // If getline doesn't work
       std::cout << "[-]Error al leer comando, saliendo..." << std::endl;
