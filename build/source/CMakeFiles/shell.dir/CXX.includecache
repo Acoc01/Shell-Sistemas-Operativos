@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../includes/utils.h
+iostream
+-
+stdlib.h
+-
+string
+-
+unistd.h
+-
+vector
+-
+
+/home/roako/Desktop/Shell-Sistemas-Operativos/source/shell.cpp
+utils.h
+/home/roako/Desktop/Shell-Sistemas-Operativos/source/utils.h
+iostream
+-
+stdlib.h
+-
+string
+-
+unistd.h
+-
+utility
+-
+vector
+-
+

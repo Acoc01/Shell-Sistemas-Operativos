@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/roako/Desktop/Shell-Sistemas-Operativos/build/includes",
+  "command": "/usr/bin/c++   -I/home/roako/Desktop/Shell-Sistemas-Operativos/includes/.    -o CMakeFiles/utils.dir/utils.cpp.o -c /home/roako/Desktop/Shell-Sistemas-Operativos/includes/utils.cpp",
+  "file": "/home/roako/Desktop/Shell-Sistemas-Operativos/includes/utils.cpp"
+},
+{
+  "directory": "/home/roako/Desktop/Shell-Sistemas-Operativos/build/source",
+  "command": "/usr/bin/c++   -I/home/roako/Desktop/Shell-Sistemas-Operativos/includes/.    -o CMakeFiles/shell.dir/shell.cpp.o -c /home/roako/Desktop/Shell-Sistemas-Operativos/source/shell.cpp",
+  "file": "/home/roako/Desktop/Shell-Sistemas-Operativos/source/shell.cpp"
+}
+]

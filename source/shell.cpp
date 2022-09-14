@@ -1,3 +1,4 @@
+#include "utils.h"
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -15,6 +16,8 @@ int main() {
       if (commands == "exit")
         exit(0);
       // Parse commands
+      command_t com;
+      utis::parse(commands, com);
     } else {
       // If getline doesn't work
       std::cout << "[-]Error al leer comando, saliendo..." << std::endl;

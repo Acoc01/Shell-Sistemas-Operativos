@@ -9,8 +9,16 @@
 
 // Struct of a command
 struct command_t {
-  int narg;         // Number of args
-  std::string args; // Argument list
+  int narg;                      // Number of args
+  std::vector<std::string> args; // Argument list
+  std::string cmd;
 };
+
+namespace utils {
+void parse(std::string in, command_t &c);                     // Without pipes
+void parse_pipes(std::string in, std::vector<command_t> &cs); // With pipes
+void execute_cm(command_t c);                                 // Without pipes
+void execute_cm(command_t, uint32_t np); // When using pipes
+};                                       // namespace utils
 
 #endif

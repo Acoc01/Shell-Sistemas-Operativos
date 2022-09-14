@@ -1,0 +1,8 @@
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/CMakeFiles/rebuild_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/CMakeFiles/edit_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/includes/CMakeFiles/rebuild_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/includes/CMakeFiles/edit_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/includes/CMakeFiles/utils.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/source/CMakeFiles/rebuild_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/source/CMakeFiles/edit_cache.dir
+/home/roako/Desktop/Shell-Sistemas-Operativos/build/source/CMakeFiles/shell.dir
