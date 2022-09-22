@@ -21,6 +21,8 @@ void parse_pipes(std::string in, std::vector<command_t> &cs); // With pipes
 void execute_cm(command_t c);                                 // Without pipes
 void execute_cm(command_t, uint32_t np); // When using pipes
 std::vector<char *> tocstr(command_t c); // From string to char*
+std::pair<char*, std::vector<char*>> clean(std::vector<char *> c);// Ordenar para comodidad de pipes
+void pipes(std::string in, command_t c);// Executar con pipes multiples
 };                                       // namespace utils
 
 #endif
