@@ -61,7 +61,7 @@ void utils::execute_cm(command_t c) {
     wait(NULL);
   }
 }
-pair <char*, vector<char*>> clean(vector<char *> c){
+pair <char*, vector<char*>> utils::clean(vector<char *> c){
     char* command= c[0];
     vector<char*> v1;
     int cont=0;
@@ -78,12 +78,10 @@ pair <char*, vector<char*>> clean(vector<char *> c){
     return p;
 }
 
-void pipes(std::string in, command_t &c){
+void utils::pipes(std::string in, command_t c){
     int status;
     int tam=utils::count_pipes(in);
     int pipes[tam][2];
-
-    utils::parse(in,c);
     int place=0;
     char* com;
     vector<char*> s;
@@ -106,43 +104,45 @@ void pipes(std::string in, command_t &c){
 
         place++;
     }else{
-        for(place;place<tam;place++){
-            dup2(pipes[place-1][0], 0);
-            dup2(pipes[place][1], 1);
-            for(int i=0;i<tam;i++){
-                for(int j=0;i<2;j++){
-                    close(pipes[i][j]);
+    	if(fork()==0){
+            for(place;place<tam;place++){
+               dup2(pipes[place-1][0], 0);
+               dup2(pipes[place][1], 1);
+               for(int i=0;i<tam;i++){
+                    for(int j=0;i<2;j++){
+                        close(pipes[i][j]);
+                    }
                 }
-            }
-            dat=clean(vec);
-            com=dat.first;
-            s=dat.second;
+                dat=clean(vec);
+                com=dat.first;
+                s=dat.second;
 
-            execvp(com,s.data());
-        }
-    }else{
-        if(fork()==0){
-            dup2(pipes[place][0], 0);
-            for(int i=0;i<tam;i++){
+                execvp(com,s.data());
+            }
+       }else{
+          if(fork()==0){
+             dup2(pipes[place][0], 0);
+             for(int i=0;i<tam;i++){
                 for(int j=0;i<2;j++){
-                    close(pipes[i][j]);
+                   close(pipes[i][j]);
                 }
-            }
-            dat=clean(vec);
-            com=dat.first;
-            s=dat.second;
+             }
+             dat=clean(vec);
+             com=dat.first;
+             s=dat.second;
 
-            execvp(com,s.data());
+             execvp(com,s.data());
+           }
         }
-    }
-    for(int i=0;i<tam;i++){
-        for(int j=0;i<2;j++){
-            close(pipes[i][j]);
+        for(int i=0;i<tam;i++){
+            for(int j=0;i<2;j++){
+                close(pipes[i][j]);
+            }
         }
-    }
-    for(int i=0;i<tam;i++){
-        for(int j=0;i<2;j++){
-            wait(&status);
+        for(int i=0;i<tam;i++){
+            for(int j=0;i<2;j++){
+                wait(&status);
+            }
         }
     }
 }
