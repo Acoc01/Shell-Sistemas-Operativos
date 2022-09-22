@@ -24,6 +24,8 @@ int main() {
       // std::cout << "\n";
       if (!utils::count_pipes(commands)) {
         utils::execute_cm(com);
+      }else{
+      	utils::pipes(commands,com);
       }
     } else {
       // If getline doesn't work
