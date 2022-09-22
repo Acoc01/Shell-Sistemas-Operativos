@@ -61,3 +61,88 @@ void utils::execute_cm(command_t c) {
     wait(NULL);
   }
 }
+pair <char*, vector<char*>> clean(vector<char *> c){
+    char* command= c[0];
+    vector<char*> v1;
+    int cont=0;
+    for(vector<char*>::iterator i = c.begin(); i!=c.end();i++){
+        cont++;
+        if(*i=="|"){
+            break;
+        }else {
+            v1.push_back(*i);
+        }
+    }
+    c.erase(c.begin(), c.begin()+cont);
+    auto p = make_pair(command, v1);
+    return p;
+}
+
+void pipes(std::string in, command_t &c){
+    int status;
+    int tam=utils::count_pipes(in);
+    int pipes[tam][2];
+
+    utils::parse(in,c);
+    int place=0;
+    char* com;
+    vector<char*> s;
+    vector<char*> vec=utils::tocstr(c);
+    pair<char*, vector<char*>> dat;
+
+    if(fork()==0){
+        dup2(pipes[0][1], 1);
+        for(int i=0;i<tam;i++){
+            for(int j=0;i<2;j++){
+                close(pipes[i][j]);
+            }
+        }
+	
+	dat=clean(vec);
+        com=dat.first;
+        s=dat.second;
+
+        execvp(com,s.data());
+
+        place++;
+    }else{
+        for(place;place<tam;place++){
+            dup2(pipes[place-1][0], 0);
+            dup2(pipes[place][1], 1);
+            for(int i=0;i<tam;i++){
+                for(int j=0;i<2;j++){
+                    close(pipes[i][j]);
+                }
+            }
+            dat=clean(vec);
+            com=dat.first;
+            s=dat.second;
+
+            execvp(com,s.data());
+        }
+    }else{
+        if(fork()==0){
+            dup2(pipes[place][0], 0);
+            for(int i=0;i<tam;i++){
+                for(int j=0;i<2;j++){
+                    close(pipes[i][j]);
+                }
+            }
+            dat=clean(vec);
+            com=dat.first;
+            s=dat.second;
+
+            execvp(com,s.data());
+        }
+    }
+    for(int i=0;i<tam;i++){
+        for(int j=0;i<2;j++){
+            close(pipes[i][j]);
+        }
+    }
+    for(int i=0;i<tam;i++){
+        for(int j=0;i<2;j++){
+            wait(&status);
+        }
+    }
+}
