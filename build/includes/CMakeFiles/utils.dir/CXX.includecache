@@ -13,6 +13,8 @@ cstring
 -
 iostream
 -
+signal.h
+-
 string
 -
 sys/wait.h

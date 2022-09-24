@@ -1,6 +1,7 @@
 #include "utils.h"
 #include <cstring>
 #include <iostream>
+#include <signal.h>
 #include <string>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -49,11 +50,15 @@ int utils::count_pipes(std::string in) {
 
 void utils::execute_cm(command_t c) {
   std::vector<char *> cmd = utils::tocstr(c);
-  int pid = fork();
+  pid_t pid = fork();
+  kill(pid, SIGUSR2);
   if (pid < 0) {
     std::cout << "Error\n";
 
   } else if (pid == 0) {
+    pid_t ppid = getppid();
+    kill(ppid, SIGUSR1);
+    kill(ppid, SIGUSR2);
     execvp(cmd[0], cmd.data());
     std::cout << "Error al ejecutar comando\n";
     exit(EXIT_FAILURE);
