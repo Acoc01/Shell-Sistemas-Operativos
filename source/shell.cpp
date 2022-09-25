@@ -95,6 +95,8 @@ int main() {
         ofs << commands << "\t\t\t\t" << usgi.ru_utime.tv_usec << "ms\t\t\t\t"
             << usgi.ru_stime.tv_usec << "ms\t\t\t\t" << usgi.ru_maxrss
             << "KB\n";
+      } else if (utils::count_pipes(commands) > 0 && prompt == "test$ ") {
+        utils::execute_p(commands);
       }
     } else if (errno == EINTR) {
       std::cin.clear();
